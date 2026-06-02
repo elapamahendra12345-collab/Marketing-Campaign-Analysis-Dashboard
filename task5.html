@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Marketing Campaign Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+padding:20px;
+}
+
+.container{
+max-width:1400px;
+margin:auto;
+}
+
+.header{
+margin-bottom:25px;
+}
+
+.header h1{
+color:#8b5cf6;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+margin-bottom:25px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+}
+
+.card h3{
+margin-bottom:10px;
+color:#cbd5e1;
+}
+
+.card h1{
+color:#8b5cf6;
+}
+
+.charts{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
+margin-bottom:20px;
+}
+
+.chart-card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+}
+
+.table-card{
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:12px;
+border-bottom:1px solid #334155;
+text-align:left;
+}
+
+th{
+color:#8b5cf6;
+}
+
+.good{
+color:#22c55e;
+font-weight:bold;
+}
+
+@media(max-width:900px){
+
+.charts{
+grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>📢 Marketing Campaign Analysis Dashboard</h1>
+<p>Campaign Performance, ROAS, CAC & Conversion Analytics</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Impressions</h3>
+<h1>5.8M</h1>
+</div>
+
+<div class="card">
+<h3>Total Clicks</h3>
+<h1>242K</h1>
+</div>
+
+<div class="card">
+<h3>Conversions</h3>
+<h1>18,450</h1>
+</div>
+
+<div class="card">
+<h3>CTR</h3>
+<h1>4.17%</h1>
+</div>
+
+<div class="card">
+<h3>ROAS</h3>
+<h1>5.8x</h1>
+</div>
+
+<div class="card">
+<h3>CAC</h3>
+<h1>$18</h1>
+</div>
+
+</div>
+
+<div class="charts">
+
+<div class="chart-card">
+<h3>Campaign Performance</h3>
+<canvas id="campaignChart"></canvas>
+</div>
+
+<div class="chart-card">
+<h3>Channel Revenue Share</h3>
+<canvas id="channelChart"></canvas>
+</div>
+
+</div>
+
+<div class="charts">
+
+<div class="chart-card">
+<h3>Monthly Conversions</h3>
+<canvas id="conversionChart"></canvas>
+</div>
+
+<div class="chart-card">
+<h3>Marketing Funnel</h3>
+<canvas id="funnelChart"></canvas>
+</div>
+
+</div>
+
+<div class="table-card">
+
+<h2 style="margin-bottom:15px;">
+Top Campaigns
+</h2>
+
+<table>
+
+<thead>
+<tr>
+<th>Campaign</th>
+<th>Spend</th>
+<th>Revenue</th>
+<th>ROAS</th>
+</tr>
+</thead>
+
+<tbody>
+
+<tr>
+<td>Summer Sale</td>
+<td>$40,000</td>
+<td>$260,000</td>
+<td class="good">6.5x</td>
+</tr>
+
+<tr>
+<td>Black Friday</td>
+<td>$65,000</td>
+<td>$420,000</td>
+<td class="good">6.4x</td>
+</tr>
+
+<tr>
+<td>Email Retargeting</td>
+<td>$15,000</td>
+<td>$90,000</td>
+<td class="good">6.0x</td>
+</tr>
+
+<tr>
+<td>Google Search Ads</td>
+<td>$55,000</td>
+<td>$280,000</td>
+<td class="good">5.1x</td>
+</tr>
+
+<tr>
+<td>Instagram Ads</td>
+<td>$35,000</td>
+<td>$170,000</td>
+<td class="good">4.8x</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<script>
+
+new Chart(
+document.getElementById("campaignChart"),
+{
+type:"bar",
+data:{
+labels:[
+"Google",
+"Facebook",
+"Instagram",
+"LinkedIn",
+"Email"
+],
+datasets:[{
+label:"Revenue ($K)",
+data:[
+280,
+220,
+170,
+140,
+90
+]
+}]
+}
+}
+);
+
+new Chart(
+document.getElementById("channelChart"),
+{
+type:"doughnut",
+data:{
+labels:[
+"Google",
+"Facebook",
+"Instagram",
+"LinkedIn",
+"Email"
+],
+datasets:[{
+data:[
+35,
+25,
+18,
+12,
+10
+]
+}]
+}
+}
+);
+
+new Chart(
+document.getElementById("conversionChart"),
+{
+type:"line",
+data:{
+labels:[
+"Jan","Feb","Mar","Apr",
+"May","Jun","Jul","Aug",
+"Sep","Oct","Nov","Dec"
+],
+datasets:[{
+label:"Conversions",
+data:[
+900,1100,1200,1350,
+1450,1500,1580,1620,
+1700,1750,1850,1950
+],
+borderWidth:3
+}]
+}
+}
+);
+
+new Chart(
+document.getElementById("funnelChart"),
+{
+type:"bar",
+data:{
+labels:[
+"Impressions",
+"Clicks",
+"Leads",
+"Conversions"
+],
+datasets:[{
+label:"Users",
+data:[
+5800000,
+242000,
+52000,
+18450
+]
+}]
+}
+}
+);
+
+</script>
+
+</body>
+</html>
